@@ -1,26 +1,23 @@
 // Constants 
-const API_key = '1cb0a3948676256a448dad55bf87c6be';
+const API_key = '0ac55bb4b1e671c1828e3329d30f2307';
 
 // DOM elements
-const latitudeInput = document.getElementById('latitude-input');
-const longitudeInput = document.getElementById('longitude-input');
+const cityInput = document.getElementById('city-input');
 const searchButton = document.getElementById('search-btn');
 const weatherContainer = document.getElementById('weather-container');
 
 // Event listener for search button click
 searchButton.addEventListener('click', () => {
-    const latitude = latitudeInput.value.trim();
-    const longitude = longitudeInput.value.trim();
-    if(latitude !== '' && longitude !== '') {
-        getWeatherData(latitude, longitude);
-        latitudeInput.value = '';
-        longitudeInput.value = '';
+    const city = cityInput.value.trim();
+    if(city !== '') {
+        getWeatherData(city);
+        cityInput.value = '';
     }
 });
 
 // Function to fetch weather data from the API
 function getWeatherData(lat, lon) {
-    const apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_key}';
+    const apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_key}`
 
     fetch(apiUrl)
         .then(response => response.json())
